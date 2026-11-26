@@ -25,6 +25,7 @@ stages:
         backendAzureRmKey: 'terraform.tfstate'
 
   - job: TerraformPlan
+    dependsOn: TerraformInit
     steps:
     - task: TerraformTask@5
       inputs:
