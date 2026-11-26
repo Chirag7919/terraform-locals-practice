@@ -12,7 +12,7 @@ stages:
       inputs:
         version: 'v1.26.0'
 
-  - job: Terraform
+  - job: TerraformInit
     steps:
     - task: TerraformTask@5
       inputs:
@@ -23,11 +23,22 @@ stages:
         backendAzureRmContainerName: 'nitu'
         backendAzureRmKey: 'terraform.tfstate'
 
+  - job: TerraformPlan
+    steps:
     - task: TerraformTask@5
       inputs:
         provider: 'azurerm'
         command: 'plan'
         environmentServiceNameAzureRM: 'Pay-As-You-Go (36acc020-70d9-4256-b01b-f8395250115f)'
+
+  - job: TerraformApply
+    steps:
+
+    - task: TerraformTask@5
+      inputs:
+        provider: 'azurerm'
+        command: 'apply'
+        environmentServiceNameAzureRM: 'Pay-As-You-Go (36acc020-70d9-4256-b01b-f8395250115f)'      
 
 - stage: terraform_init
   jobs:
