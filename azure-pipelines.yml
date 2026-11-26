@@ -4,6 +4,15 @@ pool:
   name: default
 
 stages:
+- stage: codeScanning
+  jobs:
+  - job: SonarQube
+    steps:
+    - task: SonarQubeAnalyze@8
+      inputs:
+        jdkversion: 'JAVA_HOME_17_X64'
+
+
 - stage: terraform_init
   jobs:
   - job: init
