@@ -13,6 +13,7 @@ stages:
         version: 'v1.26.0'
 
   - job: TerraformInit
+    dependsOn: CodeScanning
     steps:
     - task: TerraformTask@5
       inputs:
