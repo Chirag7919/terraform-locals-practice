@@ -10,7 +10,9 @@ stages:
 
   - job: TerraformInit
     dependsOn: CodeScanning
+    condition: succeeded()
     steps:
+    - checkout: self
     - task: TerraformTask@5
       inputs:
         provider: 'azurerm'
@@ -22,7 +24,20 @@ stages:
 
   - job: TerraformPlan
     dependsOn: TerraformInit
+    condition: succeeded()
     steps:
+    - checkout: self
+
+    - task: TerraformTask@5
+      displayName: Terraform Init for Plan
+      inputs:
+        provider: 'azurerm'
+        command: 'init'
+        backendServiceArm: 'Pay-As-You-Go (36acc020-70d9-4256-b01b-f8395250115f)'
+        backendAzureRmStorageAccountName: 'niteshstg25'
+        backendAzureRmContainerName: 'nitu'
+        backendAzureRmKey: 'terraform.tfstate'
+
     - task: TerraformTask@5
       inputs:
         provider: 'azurerm'
@@ -31,7 +46,19 @@ stages:
 
   - job: TerraformApply
     dependsOn: TerraformPlan
+    condition: succeeded()
     steps:
+    - checkout: self
+    - task: TerraformTask@5
+      displayName: Terraform Init for Apply
+      inputs:
+        provider: 'azurerm'
+        command: 'init'
+        backendServiceArm: 'Pay-As-You-Go (36acc020-70d9-4256-b01b-f8395250115f)'
+        backendAzureRmStorageAccountName: 'niteshstg25'
+        backendAzureRmContainerName: 'nitu'
+        backendAzureRmKey: 'terraform.tfstate'
+
     - task: TerraformTask@5
       inputs:
         provider: 'azurerm'
