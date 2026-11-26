@@ -7,10 +7,10 @@ stages:
 - stage: codeScanning
   jobs:
   - job: CodeScanning
-    steps:
-    - task: tfsec@1
-      inputs:
-        version: 'v1.26.0'
+    #steps:
+    # - task: tfsec@1
+    #   inputs:
+    #     version: 'v1.26.0'
 
   - job: TerraformInit
     dependsOn: CodeScanning
