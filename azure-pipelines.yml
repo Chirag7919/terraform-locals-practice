@@ -15,7 +15,6 @@ stages:
       inputs:
         provider: 'azurerm'
         command: 'init'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
         backendServiceArm: 'Pay-As-You-Go (36acc020-70d9-4256-b01b-f8395250115f)'
         backendAzureRmStorageAccountName: 'niteshstg25'
         backendAzureRmContainerName: 'nitu'
@@ -28,7 +27,6 @@ stages:
       inputs:
         provider: 'azurerm'
         command: 'plan'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
         environmentServiceNameAzureRM: 'Pay-As-You-Go (36acc020-70d9-4256-b01b-f8395250115f)'
 
   - job: TerraformApply
@@ -38,7 +36,6 @@ stages:
       inputs:
         provider: 'azurerm'
         command: 'apply'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform'
         environmentServiceNameAzureRM: 'Pay-As-You-Go (36acc020-70d9-4256-b01b-f8395250115f)'
 
 
