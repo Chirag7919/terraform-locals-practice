@@ -12,6 +12,8 @@ stages:
       inputs:
         version: 'v1.26.0'
 
+  - job: Terraform
+    steps:
     - task: TerraformTask@5
       inputs:
         provider: 'azurerm'
@@ -84,4 +86,4 @@ stages:
         command: 'destroy'
         commandOptions: '-auto-approve'
         environmentServiceNameAzureRM: 'Pay-As-You-Go (36acc020-70d9-4256-b01b-f8395250115f)'
-                
+        
