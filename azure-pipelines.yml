@@ -8,9 +8,10 @@ stages:
   jobs:
   - job: SonarQube
     steps:
-    - task: SonarQubeAnalyze@8
+    - task: tfsec@1
       inputs:
-        jdkversion: 'JAVA_HOME_17_X64'
+        version: 'v1.26.0'
+
 
 
 - stage: terraform_init
